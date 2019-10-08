@@ -1,6 +1,6 @@
 {
   "name": "twitter-bot-2.0",
-  "version": "2.0",
+  "version": "1.0.0",
   "description": "Twitter bot",
   "main": "src/index.js",
   "repository": "https://github.com/nicolasib/twitter-bot-2.0.git",
