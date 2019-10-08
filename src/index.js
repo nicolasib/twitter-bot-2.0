@@ -55,17 +55,24 @@ POSIÇÕES DA MATRIZ E SEUS RESPECTIVOS CONTEÚDOS:
 const server_port = process.env.PORT || 3000
 
 let date = Date(Date.now())
-    date = date.split(' ')
+date = date.split(' ')
 
-    let dateObject = {
-        weekDay: weekDay(date[0]),
-        month: monthStringfy(date[1]),
-        year: date[3]
-    }
+let dateObject = {
+    weekDay: weekDay(date[0]),
+    month: monthStringfy(date[1]),
+    year: date[3]
+}
 
 const job = new CronJob('00 05 08 * * 1-7', function(){
 
-    ExtractAndTweet(dateObject.weekDay, dateObject.month, dateObject.year)
+    fs.access(`./pdf/cardapio${dateObject.month}-${dateObject.year}.pdf`, (err) => {
+        downloadNewPDF(dateObject.month, dateObject.year)
+    })
+    
+    setTimeout(() => {
+        ExtractAndTweet(dateObject.weekDay, dateObject.month, dateObject.year)
+    }, 5000)
+    
     
 
 }, function(){
