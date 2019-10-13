@@ -19,7 +19,7 @@ const cliente = new Twitter({
 
 server.use(cors())
 
-let contador = 1
+let contador = 2
 
 /*
 O OBJETO É UM VETOR DE OBJETOS
@@ -63,7 +63,7 @@ let dateObject = {
     year: date[3]
 }
 
-const job = new CronJob('00 05 08 * * 1-7', function(){
+const job = new CronJob('00 05 08 * * 0-6', function(){
 
     fs.access(`./pdf/cardapio${dateObject.month}-${dateObject.year}.pdf`, (err) => {
         downloadNewPDF(dateObject.month, dateObject.year)
