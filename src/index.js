@@ -99,6 +99,9 @@ function weekDay(dayString){
         case 'Sat': 
             return '6'
         break
+        case 'Sun':
+            return '7'
+        break
     }
 }
 
@@ -199,14 +202,14 @@ async function ExtractAndTweet(day, month, year){
                 }
                 if(dadosFinais.feijao !== 'Recesso Escolar' && dadosFinais.feijao !== 'Feriado' && dadosFinais.feijao !== 'Recesso escolar'){
                     cliente.tweetar(montaMensagem(dadosFinais))
-                    day++
+                    dateObject.weekDay++
                 }else{
                     if(dadosFinais.feijao === 'Recesso escolar' || dadosFinais.feijao === 'Recesso Escolar'){
                         cliente.tweetar('Você está de férias! Aproveite ;)')
-                        day++
+                        dateObject.weekDay++
                     }else if(dadosFinais.feijao === 'Feriado'){
                         cliente.tweetar('Hoje é feriado ;D\nNão tem almoço =(')
-                        day++
+                        dateObject.weekDay++
                     }
                 }
             }else{
@@ -221,14 +224,14 @@ async function ExtractAndTweet(day, month, year){
                 }
                 if(dadosFinais.feijao !== 'Recesso Escolar' && dadosFinais.feijao !== 'Feriado' && dadosFinais.feijao !== 'Recesso escolar'){
                     cliente.tweetar(montaMensagem(dadosFinais))
-                    day++
+                    dateObject.weekDay++
                 }else{
                     if(dadosFinais.feijao === 'Recesso escolar' || dadosFinais.feijao === 'Recesso Escolar'){
                         cliente.tweetar('Você está de férias! Aproveite ;)')
-                        day++
+                        dateObject.weekDay++
                     }else if(dadosFinais.feijao === 'Feriado'){
                         cliente.tweetar('Hoje é feriado ;D\nNão tem almoço =(')
-                        day++
+                        dateObject.weekDay++
                     }
                 }
             }  
@@ -243,7 +246,7 @@ function verificaNovaSemana(){
     if(cardapioObject.pageTables[contador+1]){
         contador++
     }else{
-        month++
+        dateObject.month++
         downloadNewPDF(month, year)
     }
 }
