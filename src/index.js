@@ -65,16 +65,20 @@ let dateObject = {
 
 const job = new CronJob('00 12 08 * * 0-6', function(){
 
+    let objetoData = {
+        weekDay: weekDay(date[0]),
+        month: monthStringfy(date[1]),
+        year: date[3]
+    }
+
     fs.access(`./pdf/cardapio${dateObject.month}-${dateObject.year}.pdf`, (err) => {
         downloadNewPDF(dateObject.month, dateObject.year)
     })
     
     setTimeout(() => {
-        ExtractAndTweet(dateObject.weekDay, dateObject.month, dateObject.year)
+        ExtractAndTweet(objetoData.weekDay, objetoData.month, objetoData.year)
     }, 5000)
     
-    
-
 }, function(){
     console.log(`Cron stopped!`)
 }, true, 'America/Sao_Paulo')
