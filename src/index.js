@@ -63,7 +63,7 @@ let dateObject = {
     year: date[3]
 }
 
-const job = new CronJob('00 05 08 * * 0-6', function(){
+const job = new CronJob('00 12 08 * * 0-6', function(){
 
     fs.access(`./pdf/cardapio${dateObject.month}-${dateObject.year}.pdf`, (err) => {
         downloadNewPDF(dateObject.month, dateObject.year)
