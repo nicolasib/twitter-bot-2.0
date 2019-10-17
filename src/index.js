@@ -60,7 +60,14 @@ date = date.split(' ')
 let dateObject = {
     weekDay: weekDay(date[0]),
     month: monthStringfy(date[1]),
-    year: date[3]
+    year: date[3],
+    changeDay(){
+        if(this.weekDay + 1 > 7){
+            this.weekDay++
+        }else{
+            this.weekDay = 1
+        }
+    }
 }
 
 const job = new CronJob('00 12 08 * * 0-6', function(){
@@ -200,14 +207,14 @@ async function ExtractAndTweet(day, month, year){
                 }
                 if(dadosFinais.feijao !== 'Recesso Escolar' && dadosFinais.feijao !== 'Feriado' && dadosFinais.feijao !== 'Recesso escolar'){
                     cliente.tweetar(montaMensagem(dadosFinais))
-                    dateObject.weekDay++
+                    dateObject.changeDay()
                 }else{
                     if(dadosFinais.feijao === 'Recesso escolar' || dadosFinais.feijao === 'Recesso Escolar'){
                         cliente.tweetar('Você está de férias! Aproveite ;)')
-                        dateObject.weekDay++
-                    }else if(dadosFinais.feijao === 'Feriado'){
+                        dateObject.changeDay()
+                    }else if(dadosFinais.feijao === 'Feriado' || dadosFinais.feijao === 'feriado'){
                         cliente.tweetar('Hoje é feriado ;D\nNão tem almoço =(')
-                        dateObject.weekDay++
+                        dateObject.changeDay()
                     }
                 }
             }else{
@@ -222,14 +229,14 @@ async function ExtractAndTweet(day, month, year){
                 }
                 if(dadosFinais.feijao !== 'Recesso Escolar' && dadosFinais.feijao !== 'Feriado' && dadosFinais.feijao !== 'Recesso escolar'){
                     cliente.tweetar(montaMensagem(dadosFinais))
-                    dateObject.weekDay++
+                    dateObject.changeDay()
                 }else{
                     if(dadosFinais.feijao === 'Recesso escolar' || dadosFinais.feijao === 'Recesso Escolar'){
                         cliente.tweetar('Você está de férias! Aproveite ;)')
-                        dateObject.weekDay++
+                        dateObject.changeDay()
                     }else if(dadosFinais.feijao === 'Feriado'){
                         cliente.tweetar('Hoje é feriado ;D\nNão tem almoço =(')
-                        dateObject.weekDay++
+                        dateObject.changeDay()
                     }
                 }
             }  
