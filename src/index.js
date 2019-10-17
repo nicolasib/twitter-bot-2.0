@@ -64,13 +64,7 @@ let dateObject = {
 }
 
 const job = new CronJob('00 12 08 * * 0-6', function(){
-
-    let objetoData = {
-        weekDay: weekDay(date[0]),
-        month: monthStringfy(date[1]),
-        year: date[3]
-    }
-
+    
     fs.access(`./pdf/cardapio${dateObject.month}-${dateObject.year}.pdf`, (err) => {
         downloadNewPDF(dateObject.month, dateObject.year)
     })
