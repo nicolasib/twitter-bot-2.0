@@ -70,14 +70,14 @@ let dateObject = {
     }
 }
 
-const job = new CronJob('00 12 08 * * 0-6', function(){
+const job = new CronJob('00 15 08 * * 0-6', function(){
     
     fs.access(`./pdf/cardapio${dateObject.month}-${dateObject.year}.pdf`, (err) => {
         downloadNewPDF(dateObject.month, dateObject.year)
     })
     
     setTimeout(() => {
-        ExtractAndTweet(objetoData.weekDay, objetoData.month, objetoData.year)
+        ExtractAndTweet(dateObject.weekDay, dateObject.month, dateObject.year)
     }, 5000)
     
 }, function(){
