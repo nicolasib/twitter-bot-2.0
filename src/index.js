@@ -19,7 +19,7 @@ const cliente = new Twitter({
 
 server.use(cors())
 
-let contador = 2
+let contador = 3
 
 /*
 O OBJETO É UM VETOR DE OBJETOS
