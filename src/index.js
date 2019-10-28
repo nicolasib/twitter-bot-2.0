@@ -19,7 +19,7 @@ const cliente = new Twitter({
 
 server.use(cors())
 
-let contador = 3
+let contador = 4
 
 /*
 O OBJETO É UM VETOR DE OBJETOS
@@ -62,7 +62,7 @@ let dateObject = {
     month: monthStringfy(date[1]),
     year: date[3],
     changeDay(){
-        if(this.weekDay + 1 > 7){
+        if(this.weekDay + 1 <= 7){
             this.weekDay++
         }else{
             this.weekDay = 1
@@ -70,7 +70,7 @@ let dateObject = {
     }
 }
 
-const job = new CronJob('00 15 08 * * 0-6', function(){
+const job = new CronJob('00 24 14 * * 0-6', function(){
     
     fs.access(`./pdf/cardapio${dateObject.month}-${dateObject.year}.pdf`, (err) => {
         downloadNewPDF(dateObject.month, dateObject.year)
@@ -250,9 +250,11 @@ async function ExtractAndTweet(day, month, year){
 function verificaNovaSemana(){
     if(cardapioObject.pageTables[contador+1]){
         contador++
+        dateObject.changeDay()
     }else{
         dateObject.month++
-        downloadNewPDF(month, year)
+        dateObject.changeDay()
+        downloadNewPDF(dateObject.month, dateObject.year)
     }
 }
 
